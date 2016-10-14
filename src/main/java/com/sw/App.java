@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.FilenameFilter;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -21,8 +23,8 @@ public class App extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	public static void main(String[] args) {
-		App app = new App();
-		app.setVisible(true);
+		 App app = new App();
+		 app.setVisible(true);
 	}
 
 	private JLabel jLabel;
@@ -46,16 +48,34 @@ public class App extends JFrame {
 	
 	int i = 0;
 	private JLabel getJLabel() {
-		final String[] ps = new String[]{"IMGP0790", "IMGP0785", "IMGP0804", "IMGP0805", "IMGP0774", "IMGP0723", "IMGP0768", "IMGP0769", "IMGP0770"};
-		final ImageIcon[] iis = new ImageIcon[]{new ImageIcon("C:\\Users\\OLE\\Pictures\\IMGP0790.JPG"),
-				new ImageIcon("C:\\Users\\OLE\\Pictures\\IMGP0785.JPG"),
-				new ImageIcon("C:\\Users\\OLE\\Pictures\\IMGP0804.JPG"),
-				new ImageIcon("C:\\Users\\OLE\\Pictures\\IMGP0805.JPG"),
-				new ImageIcon("C:\\Users\\OLE\\Pictures\\IMGP0774.JPG"),
-				new ImageIcon("C:\\Users\\OLE\\Pictures\\IMGP0723.JPG"),
-				new ImageIcon("C:\\Users\\OLE\\Pictures\\IMGP0768.JPG"),
-				new ImageIcon("C:\\Users\\OLE\\Pictures\\IMGP0769.JPG"),
-				new ImageIcon("C:\\Users\\OLE\\Pictures\\IMGP0770.JPG")};
+//		final String[] ps = new String[]{"IMGP0790", "IMGP0785", "IMGP0804", "IMGP0805", "IMGP0774", "IMGP0723", "IMGP0768", "IMGP0769", "IMGP0770"};
+//		final ImageIcon[] iis = new ImageIcon[]{new ImageIcon("C:\\Users\\OLE\\Pictures\\IMGP0790.JPG"),
+//				new ImageIcon("C:\\Users\\OLE\\Pictures\\IMGP0785.JPG"),
+//				new ImageIcon("C:\\Users\\OLE\\Pictures\\IMGP0804.JPG"),
+//				new ImageIcon("C:\\Users\\OLE\\Pictures\\IMGP0805.JPG"),
+//				new ImageIcon("C:\\Users\\OLE\\Pictures\\IMGP0774.JPG"),
+//				new ImageIcon("C:\\Users\\OLE\\Pictures\\IMGP0723.JPG"),
+//				new ImageIcon("C:\\Users\\OLE\\Pictures\\IMGP0768.JPG"),
+//				new ImageIcon("C:\\Users\\OLE\\Pictures\\IMGP0769.JPG"),
+//				new ImageIcon("C:\\Users\\OLE\\Pictures\\IMGP0770.JPG")};
+		
+		File dir = new File("C:/Users/OLE/Pictures/");
+		FilenameFilter filter = new FilenameFilter() {
+			public boolean accept(File dir, String name) {
+				return name.endsWith(".jpg") || name.endsWith(".JPG");
+			}
+		};
+		String[] children = dir.list(filter);
+		final ImageIcon[] iis = new ImageIcon[children.length];
+		if (children == null) {
+			System.out.println("目录不存在或它不是一个目录");
+		} else {
+			for (int i = 0; i < children.length; i++) {
+				String filename = children[i];
+				iis[i] = new ImageIcon("C:\\Users\\OLE\\Pictures\\"+filename);
+				System.out.println("C:\\Users\\OLE\\Pictures\\"+filename);
+			}
+		}
 		
 		if (jLabel == null) {
 			jLabel = new JLabel();
@@ -66,7 +86,7 @@ public class App extends JFrame {
 			jLabel.addMouseListener(new MouseListener() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					if((i+1)<ps.length) {
+					if((i+1)<iis.length) {
 						i++;
 					} else {
 						i=0;
