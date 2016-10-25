@@ -67,14 +67,11 @@ public class App extends JFrame {
 		};
 		String[] children = dir.list(filter);
 		final ImageIcon[] iis = new ImageIcon[children.length];
-		if (children == null) {
-			System.out.println("目录不存在或它不是一个目录");
-		} else {
-			for (int i = 0; i < children.length; i++) {
-				String filename = children[i];
-				iis[i] = new ImageIcon("C:\\Users\\OLE\\Pictures\\"+filename);
-				System.out.println("C:\\Users\\OLE\\Pictures\\"+filename);
-			}
+		
+		for (int i = 0; i < children.length; i++) {
+			String filename = children[i];
+			iis[i] = new ImageIcon("C:\\Users\\OLE\\Pictures\\"+filename);
+			System.out.println("C:\\Users\\OLE\\Pictures\\"+filename);
 		}
 		
 		if (jLabel == null) {
