@@ -1,16 +1,11 @@
 package com.sw;
 
-import java.awt.Graphics;
-import java.awt.Image;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FilenameFilter;
-
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 /**
  * Hello world!
@@ -81,7 +76,6 @@ public class App extends JFrame {
 //			icon.setImage(icon.getImage().getScaledInstance(icon.getIconWidth(), icon.getIconHeight(), Image.SCALE_DEFAULT));
 			jLabel.setIcon(iis[0]);
 			jLabel.addMouseListener(new MouseListener() {
-				@Override
 				public void mouseClicked(MouseEvent e) {
 					if((i+1)<iis.length) {
 						i++;
@@ -93,25 +87,21 @@ public class App extends JFrame {
 					System.out.println("update on click");
 				}
 
-				@Override
 				public void mousePressed(MouseEvent e) {
 					// TODO Auto-generated method stub
 					
 				}
 
-				@Override
 				public void mouseReleased(MouseEvent e) {
 					// TODO Auto-generated method stub
 					
 				}
 
-				@Override
 				public void mouseEntered(MouseEvent e) {
 					// TODO Auto-generated method stub
 					
 				}
 
-				@Override
 				public void mouseExited(MouseEvent e) {
 					// TODO Auto-generated method stub
 					
